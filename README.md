@@ -196,10 +196,9 @@ For jurisdiction-specific deadlines, rights, or filing rules, verify current off
 - PDF, email, and screenshot evidence extraction helpers
 - More real-world examples with private data removed
 
-## Launch Notes
+## Release
 
 - v0.1.0 notes: [`docs/release-notes/v0.1.0.md`](docs/release-notes/v0.1.0.md)
-- Copy for HN, Reddit, X, and LinkedIn: [`docs/launch-copy.md`](docs/launch-copy.md)
 
 ## Contributing
 
