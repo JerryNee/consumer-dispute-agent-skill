@@ -1,5 +1,6 @@
 .DS_Store
 dispute-pack/
+docs/launch-copy.md
 *.zip
 __pycache__/
 *.pyc
