@@ -29,6 +29,51 @@ Real disputes need more than a letter:
 
 This skill packages that workflow so Claude, Codex, or any Agent Skills-compatible client can follow it consistently.
 
+## Demo
+
+Input:
+
+```text
+I cancelled Example Streaming on May 28, 2026, but they charged me $29.99 on June 1.
+I have a card statement, a cancellation screenshot, and a support email from June 2.
+```
+
+Command:
+
+```bash
+python3 skills/consumer-dispute-assistant/scripts/build_case_pack.py \
+  examples/subscription-double-charge.json \
+  --out dispute-pack \
+  --tone firm \
+  --today 2026-06-18
+```
+
+Output:
+
+```text
+dispute-pack/
+├── case_summary.md
+├── merchant_refund_request.md
+├── payment_dispute_statement.md
+├── regulator_complaint.md
+└── follow_up_log.md
+```
+
+Preview:
+
+```text
+Subject: Request for resolution: Example Streaming charge $29.99
+
+I cancelled the subscription before renewal, but the company charged me again on June 1, 2026.
+
+Evidence available:
+- Card statement: Shows $29.99 charge from Example Streaming on 2026-06-01.
+- Cancellation screenshot: Shows cancellation completed on 2026-05-28.
+- Support email: Shows refund request sent on 2026-06-02.
+```
+
+See the full sample output in [`docs/demo-output.md`](docs/demo-output.md).
+
 ## Install
 
 ### Codex
@@ -61,7 +106,8 @@ Run the included example:
 python3 skills/consumer-dispute-assistant/scripts/build_case_pack.py \
   examples/subscription-double-charge.json \
   --out dispute-pack \
-  --tone firm
+  --tone firm \
+  --today 2026-06-18
 ```
 
 You get:
@@ -149,6 +195,11 @@ For jurisdiction-specific deadlines, rights, or filing rules, verify current off
 - Browser-agent recipes for supervised form filling
 - PDF, email, and screenshot evidence extraction helpers
 - More real-world examples with private data removed
+
+## Launch Notes
+
+- v0.1.0 notes: [`docs/release-notes/v0.1.0.md`](docs/release-notes/v0.1.0.md)
+- Copy for HN, Reddit, X, and LinkedIn: [`docs/launch-copy.md`](docs/launch-copy.md)
 
 ## Contributing
 

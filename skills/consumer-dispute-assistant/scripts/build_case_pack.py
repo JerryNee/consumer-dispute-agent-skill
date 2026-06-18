@@ -127,8 +127,8 @@ def open_gaps(data: dict[str, Any]) -> str:
     return "\n".join(f"- {key}: {missing()}" for key in gaps)
 
 
-def template_context(data: dict[str, Any]) -> dict[str, str]:
-    today = date.today()
+def template_context(data: dict[str, Any], today: date | None = None) -> dict[str, str]:
+    today = today or date.today()
     response_deadline = today + timedelta(days=7)
     timeline = timeline_rows(data)
     evidence = evidence_rows(data)
@@ -180,11 +180,11 @@ def render_template(template_path: Path, context: dict[str, str]) -> str:
     return Template(text.replace("{{", "${").replace("}}", "}")).safe_substitute(context)
 
 
-def build_pack(data: dict[str, Any], out_dir: Path, tone: str) -> None:
+def build_pack(data: dict[str, Any], out_dir: Path, tone: str, today: date | None = None) -> None:
     skill_root = Path(__file__).resolve().parents[1]
     templates_dir = skill_root / "assets" / "templates"
     out_dir.mkdir(parents=True, exist_ok=True)
-    context = template_context(data)
+    context = template_context(data, today=today)
     context["tone"] = tone
     context["merchant_closing"] = merchant_closing(tone, context["response_deadline"])
 
@@ -217,6 +217,7 @@ def main() -> int:
     parser.add_argument("input_json", nargs="?", help="Path to JSON intake file.")
     parser.add_argument("--out", default="dispute-pack", help="Output directory.")
     parser.add_argument("--tone", choices=["friendly", "firm", "final"], default="firm")
+    parser.add_argument("--today", help="Override today's date as YYYY-MM-DD for reproducible output.")
     parser.add_argument("--print-schema", action="store_true", help="Print example JSON schema.")
     args = parser.parse_args()
 
@@ -232,7 +233,8 @@ def main() -> int:
     if not isinstance(data, dict):
         raise SystemExit("Intake JSON must be an object.")
 
-    build_pack(data, Path(args.out), args.tone)
+    today = date.fromisoformat(args.today) if args.today else None
+    build_pack(data, Path(args.out), args.tone, today=today)
     return 0
 
 

@@ -101,6 +101,8 @@ To show the expected input shape:
 python3 scripts/build_case_pack.py --print-schema
 ```
 
+For reproducible demos or tests, pass `--today YYYY-MM-DD` to fix generated follow-up deadlines.
+
 ## Confirmation Gate
 
 Before external action, present:
