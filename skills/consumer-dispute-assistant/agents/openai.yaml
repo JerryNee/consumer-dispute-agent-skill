@@ -1,0 +1,4 @@
+interface:
+  display_name: "Consumer Dispute Assistant"
+  short_description: "Build refund and complaint case packs"
+  default_prompt: "Use $consumer-dispute-assistant to organize my evidence and draft a refund complaint package."

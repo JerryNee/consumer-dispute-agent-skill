@@ -1,0 +1,54 @@
+{
+  "consumer_name": "Jane Doe",
+  "merchant_name": "Example Streaming",
+  "product_or_service": "Monthly video subscription",
+  "dispute_type": "subscription cancellation failure",
+  "amount": "29.99",
+  "currency": "$",
+  "charge_date": "2026-06-01",
+  "purchase_date": "2026-05-01",
+  "cancellation_date": "2026-05-28",
+  "order_id": "INV-12345",
+  "payment_method": "Visa ending 1234",
+  "desired_resolution": "Cancel the subscription and refund the June charge.",
+  "issue_summary": "I cancelled the subscription before renewal, but the company charged me again on June 1, 2026.",
+  "timeline": [
+    {
+      "date": "2026-05-01",
+      "event": "Started monthly subscription."
+    },
+    {
+      "date": "2026-05-28",
+      "event": "Cancelled in account settings before the next billing period."
+    },
+    {
+      "date": "2026-06-01",
+      "event": "Charged $29.99 after cancellation."
+    },
+    {
+      "date": "2026-06-02",
+      "event": "Emailed support requesting cancellation confirmation and refund."
+    }
+  ],
+  "evidence": [
+    {
+      "label": "Card statement",
+      "notes": "Shows $29.99 charge from Example Streaming on 2026-06-01."
+    },
+    {
+      "label": "Cancellation screenshot",
+      "notes": "Shows cancellation completed on 2026-05-28."
+    },
+    {
+      "label": "Support email",
+      "notes": "Shows refund request sent on 2026-06-02."
+    }
+  ],
+  "prior_contacts": [
+    {
+      "date": "2026-06-02",
+      "channel": "Email",
+      "summary": "Asked support to refund the renewal charge; no response yet."
+    }
+  ]
+}
